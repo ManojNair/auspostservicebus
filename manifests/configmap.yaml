@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: letsbsqueue-config
-  namespace: default
+  name: deployapp-config
+  namespace: dev
   labels:
-    app.kubernetes.io/name: letsbsqueue
+    app.kubernetes.io/name: deployapp
     kubernetes.azure.com/generator: devhub
 data:
