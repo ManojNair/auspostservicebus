@@ -1,16 +1,16 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: letsbsqueue
+  name: deployapp
   labels:
-    app.kubernetes.io/name: letsbsqueue
-    app.kubernetes.io/part-of: letsbsqueue-project
+    app.kubernetes.io/name: deployapp
+    app.kubernetes.io/part-of: deployapp-project
     kubernetes.azure.com/generator: devhub
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: letsbsqueue
+    name: deployapp
   minReplicas: 1
   maxReplicas: 5
   metrics:

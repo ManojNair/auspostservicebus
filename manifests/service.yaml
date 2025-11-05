@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: letsbsqueue
-  namespace: default
+  name: deployapp
+  namespace: dev
   labels:
-    app.kubernetes.io/name: letsbsqueue
+    app.kubernetes.io/name: deployapp
     kubernetes.azure.com/generator: devhub
 spec:
   type: LoadBalancer
   selector:
-    app.kubernetes.io/name: letsbsqueue
+    app.kubernetes.io/name: deployapp
   ports:
     - protocol: TCP
       port: 8080
