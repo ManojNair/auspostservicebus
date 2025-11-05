@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: letsbsqueue
+  labels:
+    app.kubernetes.io/name: letsbsqueue
+    app.kubernetes.io/part-of: letsbsqueue-project
+    kubernetes.azure.com/generator: devhub
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: letsbsqueue

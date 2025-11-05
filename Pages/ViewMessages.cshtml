@@ -1,0 +1,59 @@
+@page
+@model ViewMessagesModel
+@{
+    ViewData["Title"] = "View Messages";
+}
+
+<div class="container mt-4">
+    <h1 class="display-4">Service Bus Messages</h1>
+    <p class="lead">View and retrieve messages from the Service Bus queue</p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="maxMessages" class="form-label">Number of messages to retrieve:</label>
+                    <input type="number" class="form-control" id="maxMessages" name="maxMessages" 
+                           asp-for="MaxMessages" min="1" max="100" value="10" />
+                </div>
+                <button type="submit" class="btn btn-primary">Retrieve Messages</button>
+                <a asp-page="/Index" class="btn btn-secondary">Back to Home</a>
+            </form>
+
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger mt-3" role="alert">
+                    @Model.ErrorMessage
+                </div>
+            }
+
+            @if (Model.Messages != null && Model.Messages.Any())
+            {
+                <div class="mt-4">
+                    <h3>Retrieved Messages (@Model.Messages.Count)</h3>
+                    <div class="alert alert-info">
+                        <strong>Note:</strong> These messages have been removed from the queue after retrieval.
+                    </div>
+                    <div class="list-group">
+                        @for (int i = 0; i < Model.Messages.Count; i++)
+                        {
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Message #@(i + 1)</h5>
+                                    <small class="text-muted">@DateTime.Now.ToString("HH:mm:ss")</small>
+                                </div>
+                                <p class="mb-1">@Model.Messages[i]</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else if (Model.Messages != null && !Model.Messages.Any())
+            {
+                <div class="alert alert-warning mt-3" role="alert">
+                    No messages found in the queue.
+                </div>
+            }
+        </div>
+    </div>
+</div>
